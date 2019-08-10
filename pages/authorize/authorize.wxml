@@ -1,0 +1,10 @@
+
+<image class="background" src="./../images/startPage.jpg" mode="aspectFill"></image>
+<view class="reminder" wx:if="{{showDialog}}">
+    <view class="text">
+        <text>为了方便服务商识别，请允许获取微信昵称用于您的账号名称。</text>
+    </view>
+    <view class="button">
+        <button open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'>去授权</button>
+    </view>
+</view>

@@ -1,0 +1,39 @@
+
+.text {
+    position: absolute;
+    font-size: 30px;
+    line-height: 42px;
+    color: #000;
+    top: 200rpx;
+    left: 60rpx;
+}
+
+.input {
+    position: absolute;
+    top: 350rpx;
+    left: 60rpx;
+    font-size: 16px;
+    line-height: 22px;
+    color: #A7A7A7;
+    width: 85%;
+}
+
+.line {
+    position: absolute;
+    width: 85%;
+    top: 420rpx;
+    left: 60rpx;
+    height: 1px;
+    background-color: #A7A7A7;
+
+}
+
+.button {
+    width: 85%;
+    height: 45px;
+    position: absolute;
+    top: 490rpx;
+    left: 60rpx;
+    color: #fff;
+    border-radius: 0;
+}

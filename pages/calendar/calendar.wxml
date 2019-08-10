@@ -1,0 +1,65 @@
+<view class="weekday">
+    <text class="day" wx:for="{{week}}" wx:key="*this">{{item}}</text>
+</view>
+<scroll-view class="month" scroll-into-view="{{toView}}" scroll-y="scroll-y">
+    <view id="first" class="monthday">
+        <view class="title">{{firstData.year}}年{{firstData.month}}月</view>
+        <view class="day">
+            <text wx:for="{{firstMonthArr}}" wx:key="*this" bindtap="selectDate" data-date="{{firstData.year}}/{{firstData.month}}/{{item}}" data-classIndex="{{item ? item : 0}}" class="{{m1.getClass(item ? item : 0, startIndex, endIndex)}}">{{item}}</text>
+        </view>
+    </view>
+    <view id="second" class="monthday">
+        <view class="title">{{secondData.year}}年{{secondData.month}}月</view>
+        <view class="day">
+            <text wx:for="{{secondMonthArr}}" wx:key="*this" bindtap="selectDate" data-date="{{secondData.year}}/{{secondData.month}}/{{item}}" data-classIndex="{{item ? item + firstData.totalDay: 0}}" class="{{m1.getClass(item ? item + firstData.totalDay: 0, startIndex, endIndex)}}">{{item}}</text>
+        </view>
+    </view>
+    <view id="third" class="monthday">
+        <view class="title">{{month - 1 > 0 ? year : (year - 1)}}年{{month - 1 > 0 ? month - 1 : (month - 1 + 12)}}月</view>
+        <view class="day">
+            <text wx:for="{{thirdMonthArr}}" wx:key="*this" bindtap="selectDate" data-date="{{thirdData.year}}/{{thirdData.month}}/{{item}}" data-classIndex="{{item ? item + firstData.totalDay + secondData.totalDay: 0}}" class="{{m1.getClass(item ? item + firstData.totalDay + secondData.totalDay: 0, startIndex, endIndex)}}">{{item}}</text>
+        </view>
+    </view>
+     <view id="fourth" class="monthday">
+        <view class="title">{{year}}年{{month}}月</view>
+        <view class="day">
+            <text wx:for="{{fourthMonthArr}}" wx:key="*this" bindtap="selectDate" data-date="{{year}}/{{month}}/{{item}}" data-classIndex="{{item ? item +firstData.totalDay + secondData.totalDay + thirdData.totalDay : 0}}" class="{{m1.getClass(item + firstData.totalDay + secondData.totalDay + thirdData.totalDay, startIndex, endIndex, currentDayIndex)}}">{{m1.getRencentDay(item, currentIndex)}}</text>
+        </view>
+    </view>
+</scroll-view>
+<view class="button">
+    <button class='playBack' bindtap='toPlayBack' style="{{bgcSet}}">回放 <text class="small">(可连续查看3天)</text></button>
+</view>
+<wxs module="m1">
+    var date = getDate().getDate()
+    var getClass = function (index, startIndex, endIndex, currentDayIndex) {
+        var className = ''
+        if (index === 0) {
+            return
+        }
+        if (index === startIndex || index === endIndex) {
+            className = 'selected'
+        } else if (index < endIndex && index > startIndex) {
+            className = 'between'
+        } else if (index > currentDayIndex) {
+            className = 'over'
+        }
+        if (currentDayIndex && index === currentDayIndex) {
+            className += ' today'
+        }
+        return className
+    };
+    var getRencentDay = function(index) {
+        if (index === date) {
+            return '今天'
+        } else if (index === (date -1)) {
+            return '昨天'
+        } else if (index === (date -2)) {
+            return '前天'
+        } else {
+            return index
+        }
+    }
+    module.exports.getClass = getClass
+    module.exports.getRencentDay = getRencentDay
+</wxs>

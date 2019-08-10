@@ -1,0 +1,12 @@
+<view class="page" style="{{bgcSet}}">
+    <view class="wholePage">
+        <view class="manual" hover-class="clicked" bindtap="toManual">
+            <image src="./../images/manual.png"></image>
+            <text>手动输入IMEI号</text>
+        </view>
+        <view class="scan" hover-class="clicked" bindtap="toScan">
+            <image src="./../images/scan.png"></image>
+            <text>扫一扫</text>
+        </view>
+    </view>
+</view>

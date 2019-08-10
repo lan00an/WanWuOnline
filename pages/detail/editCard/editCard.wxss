@@ -1,0 +1,29 @@
+.editCard {
+    margin-top: 96px;
+    padding: 0 25px;
+}
+
+.editCard .title {
+    font-size: 30px;
+    line-height: 42px;
+    color: #22262D;
+}
+
+.editCard .input {
+    margin-top: 25px;
+}
+
+.editCard .input input {
+    padding: 10px 0;
+    font-size: 16px;
+    line-height: 22px;
+    border-bottom: 1px solid #D8D8D8;
+}
+
+.editCard .submit {
+    border-radius: 5px;
+    color:#fff;
+    font-size: 16px;
+    line-height: 44px;
+    margin-top: 35px;
+}

@@ -1,0 +1,16 @@
+<map name="playback" longitude="{{currentLongitude}}" latitude="{{currentLatitude}}" scale="17" markers="{{markers}}" style="height:{{mapHeight}}" polyline="{{polyline}}" markers="{{markers}}" id="playback">
+</map>
+<view class="progress">
+    <view class="info">
+        <text>{{currentDate}}</text>
+        <text>{{currentTime}}</text>
+        <text>速度:{{curretSpeed}}km/h</text>
+        <text>里程:{{totalDistance}}km</text>
+    </view>
+    <view class="slider">
+        <image class="play" src="./../images/{{image}}.png" bindtap="playAndPause"></image>   
+        <text>{{runTime}}</text>
+        <slider bindchange="slider3change" backgroundColor="#D8D8D8" block-color="#22262D" block-size="12" activeColor="#D8D8D8" value="{{sliderValue}}" disabled min="{{min}}" max="{{max}}" />
+       <text>{{totalTime}}</text>
+    </view>
+</view>

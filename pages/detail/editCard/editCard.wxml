@@ -1,0 +1,7 @@
+<view class="editCard">
+    <view class="title">更改物联卡号</view>
+    <view class="input">
+        <input type="number" placeholder="请输入物联卡号" bindinput='getInput' value="{{cardNum}}" focus="true" />
+    </view>
+    <button class="submit" bindtap="modifyCard" style="{{bgcSet}}">确 认</button>
+</view>

@@ -1,0 +1,54 @@
+/* pages/mapDetail/mapDetail.wxss */
+map {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*垂直居中*/
+  justify-content: center;
+  /*水平居中*/
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.details {
+  font-size: 26rpx;
+   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+position:fixed;
+bottom:0;
+background-color:#fff;
+width:100%;
+height:220rpx;
+box-sizing:border-box;
+box-shadow:0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+.detail{
+  border: 1rpx solid #d3d3d3;
+  height: 220rpx;
+}
+.equipment{
+    border-bottom: 1rpx solid #d3d3d3;
+    font-weight: bold;
+ width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: left; 
+}
+.date{
+ width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: left; 
+}
+.address{
+ width: 100%;
+  height: 120rpx;
+  text-align: left; 
+}

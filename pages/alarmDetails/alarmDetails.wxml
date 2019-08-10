@@ -1,0 +1,11 @@
+<!--pages/alarmDetails/alarmDetails.wxml-->
+<view class="container list-container" wx:for="{{detailList}}" >
+<view bindtap="readDetails" data-alarm_time="{{item.alarm_time}}" data-dev_name="{{item.dev_name}}" data-address="{{item.address}}" data-lat="{{item.lat}}" data-lng="{{item.lng}}"> 
+  <view class='detailsDate'>{{item.alarm_time}}</view>
+  <view class='detail'>
+  <view class='equipment'>设备：{{item.dev_name}}</view>
+  <view class='address'>地址：{{item.address}}</view>
+  <view class='details'>查看详情</view>
+  </view>
+</view> 
+</view>

@@ -1,0 +1,61 @@
+.detail {
+  background-color: #fff;
+  margin-top: 30rpx;
+}
+.detail .item {
+  height: 44px;
+  box-sizing: border-box;
+  width: 720rpx;
+  border-bottom: 0.5px solid #ccc;
+  margin-left: 30rpx;
+}
+.detail .item text {
+  line-height: 44px;
+}
+.detail .item text.title {
+  font-size: 17px;
+  float: left;
+  color: #030303;
+}
+.detail .item text.data {
+  font-size: 15px;
+  float: right;
+  color: #999999;
+  margin-right: 15px;
+}
+.detail .item .copy {
+  float: right;
+  margin-right: 15px;
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #2575AC;
+}
+.detail .item.editRemark .data {
+  text-overflow: ellipsis;
+  text-align: right;
+  height: 44px;
+  overflow: hidden;
+  width: 70%;
+}
+.detail .item:last-child {
+  border: none;
+}
+.detail .item image {
+  width: 8px;
+  height: 13px;
+  float: right;
+  margin-right: 15px;
+  padding: 16px 0 15px;
+  vertical-align: middle;
+}
+.charge {
+  margin-top: 30rpx;
+  height: 44px;
+  line-height: 44px;
+  background-color: #fff;
+  font-size: 17px;
+  padding: 0 15px;
+}
+Page {
+  background-color: #eee;
+}

@@ -1,0 +1,51 @@
+Page {
+    height: 100%;
+    width: 100%;
+}
+.page {
+    height: 100%;
+    width: 100%;
+}
+.wholePage {
+    position: fixed;
+    width: 195px;
+    top: 50%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+}
+view.manual, view.scan {
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 35px;
+}
+.scan {
+    margin-left: 55px;
+}
+image {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.manual.clicked,
+.scan.clicked {
+    background-color: yellowgreen;
+}
+
+view.manual text {
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    left: -8px;
+    top: 80px;
+}
+
+view.scan text {
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    left: 142px;
+    top: 80px;
+}

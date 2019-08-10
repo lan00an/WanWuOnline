@@ -1,0 +1,28 @@
+<!--pages/alarm/alarm.wxml-->
+<view class="container list-container">  
+ <view class="list-item" wx:for="{{contactList}}"> 
+ <image class="left" src="./../images/alarm_type_speedup.png" wx:if="{{item.alarm_type==='急加速报警'}}"></image>
+ <image class="left" src="./../images/alarm_type_speeddown.png" wx:elif="{{item.alarm_type==='急减速报警'}}"></image>
+ <image class="left" src="./../images/alarm_type_speed_exceed.png" wx:elif="{{item.alarm_type==='超速报警'}}"></image>
+ <image class="left" src="./../images/alarm_type_sharpturn.png" wx:elif="{{item.alarm_type==='急转弯报警'}}"></image>
+ <image class="left" src="./../images/alarm_type_crash.png" wx:elif="{{item.alarm_type==='碰撞报警'}}"></image>
+  <image class="left" src="./../images/alarm_type_low_battery.png" wx:elif="{{item.alarm_type==='低电报警'}}"></image>
+   <image class="left" src="./../images/alarm_type_fencing_exceed.png" wx:elif="{{item.alarm_type==='出围栏报警'}}"></image>
+    <image class="left" src="./../images/alarm_type_dismantle.png" wx:elif="{{item.alarm_type==='拆机报警'}}"></image>
+     <image class="left" src="./../images/alarm_type_bluetooth.png" wx:elif="{{item.alarm_type==='蓝牙报警'}}"></image>
+ <!-- <image class="left" src="./../images/plus.png" wx:else></image> -->
+ <view bindtap="readDetail" data-alarm_type="{{item.alarm_type}}" data-user_name="{{item.user_name}}" data-alarm_type_id="{{item.alarm_type_id}}">   
+   <view class="right">  
+     <view class="title">  
+       <view class="name">{{item.alarm_type}}</view>  
+       <view class="phone">{{item.user_name}}</view>  
+     </view>  
+     <view class="timea">
+       <view class="time">{{item.send_time}}</view>  
+       <view class="num">{{item.alarm_num}}</view> 
+     </view>  
+   </view>  
+ </view> 
+   
+ </view>  
+</view> 

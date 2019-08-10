@@ -1,0 +1,18 @@
+<!--pages/mapDetail/mapDetail.wxml-->
+    <map
+      id="myMap"
+      latitude="{{latitude}}"
+      scale="18"
+      longitude="{{longitude}}"
+      markers="{{markers}}"
+      show-location
+      bindcallouttap = "bindcallouttap"
+    ></map>
+    <cover-view class='details'>
+     <cover-view class='detail'>
+  <cover-view class='equipment'>{{dev_name}}</cover-view>
+  <cover-view class='date'>报警时间：{{alarm_time}}</cover-view>
+  <cover-view class='address'>报警地址：{{address}}</cover-view>
+  
+  </cover-view>
+    </cover-view>

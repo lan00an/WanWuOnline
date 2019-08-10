@@ -1,0 +1,61 @@
+/* pages/alarm/alarm.wxss */
+.container {  
+  height: 100%;  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: space-between;  
+  padding: 200rpx 0;  
+  box-sizing: border-box;  
+} 
+.list-container{  
+  padding: 0  
+}  
+.list-item{  
+  height: 100rpx;  
+  display: flex;  
+  flex-direction: row; 
+  padding:5rpx;  
+}  
+.left{  
+  width: 80rpx;  
+  height:80rpx;  
+}  
+.right{  
+  width: 590rpx;  
+  height: 100rpx;  
+  margin-left: 20rpx;  
+  display: flex;  
+  flex-direction: row;  
+}  
+.title{  
+  flex: 1;  
+  display: flex;  
+  flex-direction: column;  
+  width: 310rpx;  
+}  
+.name{  
+  font-size: 30rpx;  
+  color: #000;  
+}  
+.phone{  
+  font-size: 25rpx;  
+  color:darkgrey;  
+}  
+.timea{   
+  display: flex;  
+  flex-direction: column;   
+} 
+.time{    
+  color: #aaa;  
+  font-size: 25rpx;  
+} 
+.num{  
+  border-radius: 50%;
+  background-color: red;
+  text-align: center;
+  font-size: 25rpx;  
+  color:rgb(250, 248, 248);
+  width: 25%;
+  margin-left: 160rpx;  
+}

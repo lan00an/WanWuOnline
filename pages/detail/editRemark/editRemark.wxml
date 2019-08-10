@@ -1,0 +1,8 @@
+<view class="editRemark">
+    <view class="title">添加/更改备注</view>
+    <view class="input">
+        <textarea type="text" placeholder="请输入备注" bindinput='getInput' value="{{remark}}" focus="true" maxlength="100"></textarea>
+        <text class="count">{{letterCount}}</text>
+    </view>
+    <button class="submit" bindtap="editRemark" style="{{bgcSet}}">确 认</button>
+</view>

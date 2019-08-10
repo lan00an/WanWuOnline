@@ -1,0 +1,39 @@
+page {
+    background-color: #22262D;
+    height: 100%;
+}
+.reminder {
+    width: 235px;
+    height: 160px;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: 50%;
+    border-radius: 5px;
+    z-index: 2;
+    border: 1rpx solid #ccc;
+}
+.reminder .text {
+    padding: 25px;
+    color: #22262D;
+    font-size: 15px;
+    line-height: 21px;
+    display: block;
+}
+.reminder .button {
+    height: 47px;
+}
+.reminder button {
+    height: 47px;
+    font-size: 18px;
+    color: #2575AC;
+    line-height: 47px;
+    border: none;
+    box-shadow: none;
+}
+
+image {
+    width: 100%;
+    height: 100%;
+}

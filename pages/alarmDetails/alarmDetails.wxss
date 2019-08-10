@@ -1,0 +1,45 @@
+/* pages/alarmDetails/alarmDetails.wxss */
+.container {  
+  height: 100%;  
+  display: flex; 
+  font-size: 30rpx; 
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: space-between;  
+  padding: 200rpx 0;  
+  box-sizing: border-box;  
+} 
+.list-container{  
+  padding: 0  
+}
+.detailsDate{
+  background-color: #d3d3d3;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+.detail{
+  border: 1rpx solid #d3d3d3;
+  border-radius: 5%;
+  height: 240rpx;
+}
+.equipment{
+ width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: left; 
+}
+.address{
+  border: 1rpx solid #d3d3d3;
+ width: 100%;
+  height: 80rpx;
+  text-align: left; 
+}
+.details{
+  color: blue;
+ width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: left; 
+}

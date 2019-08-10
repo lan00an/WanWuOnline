@@ -1,0 +1,62 @@
+/* pages/playback/playback.wxss */
+
+map {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.progress {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+.progress .info {
+    height: 45px;
+    border-bottom: 1px solid #DFDFDF;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    line-height: 45px;
+    padding: 0 15px;
+}
+
+.progress .info text {
+    font-size: 12px;
+}
+
+.progress .slider {
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20px 15px;
+}
+
+.progress .slider image {
+    width: 9px;
+    height: 11px;
+    padding: 3px;
+    vertical-align: middle;
+}
+
+.progress .slider slider {
+    width: 60%;
+    margin: 0;
+    margin-top: -2px;
+    margin-left: 2px;
+}
+
+.progress .slider text {
+    font-size: 10px;
+    line-height: 14px;
+}
+
+Page {
+    height: 100%;
+    background-color: #ccc;
+}

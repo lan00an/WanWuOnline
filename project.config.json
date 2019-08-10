@@ -1,0 +1,68 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "XXXXXXXXXXXXXXXXXXX",
+	"projectname": "%E4%B8%87%E7%89%A9%E5%9C%A8%E7%BA%BF",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "万物在线",
+					"pathName": "pages/monitor/monitor",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "群打开小程序",
+					"pathName": "pages/authorize/authorize",
+					"query": "",
+					"scene": "1008"
+				},
+				{
+					"id": 2,
+					"name": "群带有shareTicket",
+					"pathName": "pages/authorize/authorize",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "b6eH7nu0gtzvqGloAmDlCbr4Vy25N2NJSjK54RLJEMA@cr4dev",
+						"shareKey": "KTMkcSLd1MtsgUZyVXLNKIP2tU3-50bs1WvIVdi_pHa3dFFiq3Ia9ZPV73t2t_LFchUCIxoatbYpBjWLGo5uJg~~"
+					}
+				}
+			]
+		}
+	}
+}

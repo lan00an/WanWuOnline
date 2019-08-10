@@ -1,0 +1,8 @@
+<!--pages/scan/manual/manual.wxml-->
+<text class="text">输入IMEI</text>
+<input type="number" placeholder="请输入设备IMEI号" class="input" bindinput='inputContent' value="{{imei}}"/>
+<view class="line"></view>
+<button class="button" bindtap="bindDevice" style="{{submit ? bgcSet : bgcSetDisable}}">绑定</button>
+
+
+

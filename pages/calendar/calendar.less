@@ -1,0 +1,102 @@
+// output: true;
+page {
+    height: 100%;
+}
+
+.weekday {
+    height: 33px;
+    width: 100%;
+    position: fixed;
+    box-sizing: border-box;
+    display: flex;
+    background-color: #EBEBEB;
+    padding: 0 20px;
+    justify-content: space-between;
+    z-index: 2;
+    .day {
+        font-size: 13px;
+        color: #666666;
+        line-height: 33px;
+        &:first-child,
+        &:last-child {
+            color: #B7B7B7;
+        }
+    }
+}
+
+.month {
+    padding-top: 33px;
+    padding-bottom: 64px;
+    box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    .monthday {
+        .title {
+            border-bottom: 1px solid #DFDFDF;
+            font-size: 15px;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 15px;
+            color: #666666;
+            font-family: PingFangSC-Semibold;
+            font-weight: bolder;
+        }
+        .day {
+            text {
+                display: inline-block;
+                font-size: 15px;
+                box-sizing: border-box;
+                height: 60px;
+                line-height: 60px;
+                width: 14.2%;
+                text-align: center;
+                border-bottom: 1px solid #DFDFDF;
+                vertical-align: middle;
+                color: #22262D;
+                &.between {
+                    background-color: #D8D8D8;
+                }
+                &.over {
+                    color: #D8D8D8;
+                }
+                &.today {
+                    color: #2575AC;
+                }
+                &.selected {
+                    background-color: #2575AC;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+}
+
+.button {
+    height: 64px;
+    padding: 10px 25px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    .playBack {
+        height: 44px;
+        line-height: 44px;
+        width: 100%;
+        background-color: #22262D;
+        border-radius: 5px;
+        color: white;
+        font-size: 15px;
+        text-align: center;
+        border-radius: 5px;
+        z-index: 2;
+        text {
+            font-size: 12px;
+            line-height: 44px;
+        }
+        &.clickable {
+            background-color: #22262D;
+        }
+    }
+}

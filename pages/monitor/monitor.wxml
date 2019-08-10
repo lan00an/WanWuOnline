@@ -1,0 +1,107 @@
+<map id="map" longitude="{{currentDevice.lng || currentLongitude}}" latitude="{{currentDevice.lat || currentLatitude}}" scale="18" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location circles="{{circles}}">
+</map>
+<cover-view class="alarm" bindtap="toAlarm" hover-class="clicked">   
+ <cover-image src="./../images/alarm.png" class="bindImage">
+    </cover-image>
+   </cover-view>
+<cover-view class="bindDevice" bindtap="bindDevice" hover-class="clicked" wx:if="{{!noDevice}}" style="{{bgcSet}}">
+    <cover-image src="./../images/plus.png" class="bindImage">
+    </cover-image>
+    <cover-view class="bindText">绑定设备</cover-view>
+</cover-view>
+<!-- <cover-view class="shareLocation {{m1.addrAdjust(currentDevice)}}" wx:if="{{!noDevice}}" bindtap="shareLocation">
+    <button open-type="share">分享位置</button>
+</cover-view> -->
+<cover-view class="selection" wx:if="{{deviceList.length > 1}}">
+    <cover-view class="previous" bindtap="previousDevice">上一个</cover-view>
+    <cover-view class="line">|</cover-view>
+    <cover-view class="next" bindtap="nextDevice">下一个</cover-view>
+</cover-view>
+<cover-view class="markerInfo" wx:if="{{!noDevice && !noData}}">
+    <cover-view class="name">{{currentDevice.name}}</cover-view>
+    <cover-view class="status">
+        <cover-view class="runStatus {{m1.getStatusClass(currentDevice)}}">{{m1.getTime(currentDevice)}}</cover-view>
+        <cover-view class="battery" wx:if="{{m1.getPowerText(currentDevice)}}"> {{m1.getPowerText(currentDevice)}}
+        </cover-view>
+    </cover-view>
+    <cover-view class="address">
+    {{currentDevice.address}}
+    </cover-view>
+    <cover-view class="fullLine"></cover-view>
+    <cover-view class="operation">
+        <cover-view class="left"><cover-view class="detail" bindtap="toDetail">详情</cover-view>
+        <cover-view class="line">|</cover-view>
+        <cover-view class="playback" bindtap="toPlayback">回放</cover-view></cover-view>
+        <cover-view class="right">
+            <cover-view class="text">一键设防</cover-view>
+            <cover-view class="rail {{fence ? 'on' : ''}}" bindtap="switchFence"><cover-view class="circle" animation='{{animationData}}'></cover-view></cover-view>
+        </cover-view>
+    </cover-view>
+</cover-view>
+<cover-view class="noDevice" wx:if="{{noDevice}}" bindtap="bindDevice">
+    <cover-image class="plus" src="./../images/plus.png"></cover-image>
+    <cover-view class="text">绑定设备</cover-view>
+</cover-view>
+<wxs module="m1">
+    var showBattery = ''
+    var getPowerText = function(obj) {         
+        if (obj.acc === 0) {
+            return '熄火'
+        } else if (obj.acc === 1) {
+            return '启动'
+        } else {
+            if (obj.power) {
+                return '电量 ' + obj.power
+            }
+        }
+        return ''
+    }
+    var getStatusClass = function(obj) {
+        // "device_info_new":4, //0 正常 1 未启用 2 过期 3 离线 4 静止
+        // 行驶绿色、静止蓝色、离线灰色
+        if (obj.device_info_new === 4) {
+            return 'stop'
+        } else if (obj.device_info_new === 3) {
+            return 'offline'
+        } else if (obj.device_info_new === 0) {
+            return 'normal'
+        } else if (obj.device_info_new === 2) {
+            return 'overdue'
+        } else if (obj.device_info_new === 1) {
+            return 'unused'
+        }
+    }
+    var addrAdjust = function (obj) {
+        if (obj.address) {
+
+        }
+    }
+    var getTime = function(obj) {
+        var statusArr = ['正常', '未启用', '过期', '离线', '静止']
+        var time = obj.seconds
+        var text = ''
+        if (time >= 86400) {
+            var day = parseInt(time / 86400)
+            var hour = parseInt((time % 86400) / 3600)
+            text = day + '天' + hour + '小时'
+        } else {
+            var hour = parseInt(time / 3600)
+            var minute = parseInt((time % 3600) / 60)
+            text = hour + '小时' + minute + '分钟'
+        }
+
+        return statusArr[obj.device_info_new] + text
+    }
+    var showTime = function (obj) {
+        if (obj.device_info_new ===1) {
+            return false
+        } else {
+            return true
+        }
+    }
+    module.exports.getPowerText = getPowerText
+    module.exports.getStatusClass = getStatusClass
+    module.exports.addrAdjust = addrAdjust
+    module.exports.getTime = getTime
+    module.exports.showTime = showTime
+</wxs>
