@@ -14,17 +14,21 @@
         <image class="arrow" src="./../images/arrow.png"></image>
         <text class="data">{{remark}}</text>
     </view>
-    <view class="item" bindtap="editCard">
+    <view class="item" bindtap="editCard" wx:if="{{wlcard_out_time}}">
         <text class="title">物联卡号</text>
         <image class="arrow" src="./../images/arrow.png" wx:if="{{!goome_card}}"></image>
         <text class="data">{{iotCard}}</text>
+    </view>
+    <view class="item" wx:if="{{wlcard_out_time}}">
+        <text class="title">物联卡到期时间</text>
+        <text class="recharge" bindtap="wlcardRecharge">续费</text>
+        <text class="data">{{wlcard_out_time}}</text>
     </view>
     <view class="item">
         <text class="title">最后通讯时间</text>
         <text class="data">{{heart_time}}</text>
     </view>
 </view>
-<!-- <view class="charge">充值</view> -->
 <view class="detail">
     <view class="item">
         <text class="title">设备类型</text>
@@ -35,7 +39,30 @@
         <text class="data">{{enableTime}}</text>
     </view>
     <view class="item">
-        <text class="title">到期时间</text>
+        <text class="title">平台到期时间</text>
+        <text class="recharge" bindtap="platformCharge">续费</text>
         <text class="data">{{outTime}}</text>
+    </view>
+</view>
+<view class="detail">
+    <view class="item" bindtap="editDetail" data-prop="联系人" data-value="{{owner}}">
+        <text class="title">联系人</text>
+        <image class="arrow" src="./../images/arrow.png"></image>
+        <text class="data">{{owner}}</text>
+    </view>
+    <view class="item" bindtap="editDetail" data-prop="手机号" data-value="{{mobile}}">
+        <text class="title">手机</text>
+        <image class="arrow" src="./../images/arrow.png"></image>
+        <text class="data">{{mobile}}</text>
+    </view>
+    <!-- <view class="item"  bindtap="editDetail" data-prop="身份证号" data-value="{{idNum}}">
+        <text class="title">身份证</text>
+        <image class="arrow" src="./../images/arrow.png"></image>
+        <text class="data">{{idNum}}</text>
+    </view> -->
+    <view class="item"  bindtap="editDetail" data-prop="车牌号" data-value="{{plate}}">
+        <text class="title">车牌</text>
+        <image class="arrow" src="./../images/arrow.png"></image>
+        <text class="data">{{plate}}</text>
     </view>
 </view>

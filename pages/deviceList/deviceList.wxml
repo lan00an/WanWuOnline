@@ -1,0 +1,7 @@
+<view class="list">
+    <view class="device" wx:for="{{deviceList}}">
+        <text class="name" bindtap="chooseDevice" data-imei="{{item.imei}}" hover-class="click">{{item.name}}</text>
+        <text class="status">{{statusArr[item.device_info_new]}}</text>
+        <text class="detail" bindtap="toDetail" data-imei="{{item.imei}}" data-htime="{{item.heart_time}}">详情</text>
+    </view>
+</view>

@@ -26,7 +26,7 @@ Page({
         type: 'text',
         text: 'Hello&nbsp;World!'
       }]
-    }]
+    }],
   },
   onLoad(option) {
     const that = this;
@@ -86,13 +86,21 @@ Page({
   onUnload () {
     
   },
-  onShareAppMessage (res) {
-    return {
-      title: '数化万物 智在融合',
-      path: 'pages/authorize/authorize',
-      imageUrl: './../images/forward.jpg'
-    }
-  },
+ onShareAppMessage(res) {
+   if (res.from == 'button') {
+     return {
+       title: '数化万物 智在融合',
+       path: 'pages/locationShare/locationShare?lng=' + app.globalData.location.lng + '&lat=' + app.globalData.location.lat,
+       imageUrl: './../images/forward.jpg'
+     }
+   } else {
+     return {
+       title: '数化万物 智在融合',
+       path: 'pages/login/login',
+       imageUrl: './../images/forward.jpg'
+     }
+   }
+ },
   markertap(e) {
     console.log(e.markerId)
   },
@@ -125,6 +133,14 @@ Page({
   toSwitch () {
     wx.navigateTo({
       url: './../switch/switch?imei=' + this.data.currentDevice.imei
+    })
+  },
+  navigateTo() {
+    var latitude = this.data.currentDevice.lat;
+    var longitude = this.data.currentDevice.lng;
+    wx.openLocation({
+      latitude,
+      longitude,
     })
   },
   getDeviceList (cb) {
@@ -215,6 +231,10 @@ Page({
             markers: []
           })
           app.globalData.imei = that.data.currentDevice.imei
+          app.globalData.location = {
+            lat: that.data.currentDevice.lat,
+            lng: that.data.currentDevice.lng
+          }
           // 添加marker
           for (let i = 0; i < that.data.deviceList.length; i++) {
             let device = that.data.deviceList[i].device_info_new
@@ -270,35 +290,9 @@ Page({
       }
     })
   },
-  nextDevice () {
-    const that = this
-    clearInterval(this.data.updateTimer)
-    this.data.deviceIndex = this.data.deviceIndex === (this.data.deviceList.length -1) ? 0 : this.data.deviceIndex = this.data.deviceIndex + 1
-    this.setData({
-      deviceIndex: this.data.deviceIndex
-    })
-    that.updateCurrentDevice(that.data.deviceIndex)
-    this.data.updateTimer = setInterval(function () {
-      that.updateCurrentDevice(that.data.deviceIndex)
-    }, 10000)
-    this.setData({
-      updateTimer: this.data.updateTimer
-    })
-  },
-  previousDevice () {
-    const that = this
-    clearInterval(this.data.updateTimer)
-    this.data.deviceIndex = this.data.deviceIndex === 0 ? this.data.deviceIndex = (this.data.deviceList.length -1) : this.data.deviceIndex = this.data.deviceIndex - 1
-    this.setData({
-      deviceIndex: this.data.deviceIndex
-    })
-    
-    that.updateCurrentDevice(that.data.deviceIndex)
-    this.data.updateTimer = setInterval(function () {
-      that.updateCurrentDevice(that.data.deviceIndex)
-    }, 10000)
-    this.setData({
-      updateTimer: this.data.updateTimer
+  toDeviceList() {
+    wx.navigateTo({
+      url: '../deviceList/deviceList'
     })
   },
   getAddress (obj, cb) {

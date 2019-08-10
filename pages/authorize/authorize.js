@@ -14,12 +14,33 @@ Page({
   onLoad: function (options) {
     const that = this
     wx.login({
-      success: function (res) {
+      success: function (loginInfo) {
+        that.getWxOpenid(loginInfo,that.wxLogin)
+      },
+      fail: function (err) {
+        wx.showModal({
+          title: '登陆微信失败' + '(' + err + ')',
+          content: '登陆失败,请检查您的网络设置，稍后重试'
+        })
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+  wxLogin () {
+    const that = this;
+    wx.login({
+      success: function (loginInfo) {
         wx.request({
           url: 'https://litin.gmiot.net/1/auth/access_token',
           data: {
             method: 'loginByWechat',
-            wxcode:  res.code,
+            wxcode: loginInfo.code,
             access_type: 'inner'
           },
           success: function (res) {
@@ -41,13 +62,13 @@ Page({
             } else {
               wx.showModal({
                 title: '登陆失败',
-                  content: res.data.errcode + '登陆失败,请检查您的网络设置，稍后重试'
+                content: res.data.errcode + '登陆失败,请检查您的网络设置，稍后重试'
               })
             }
           },
           fail: function (err) {
             wx.showModal({
-              title: '登陆失败'+ '(' + err + ')',
+              title: '登陆失败' + '(' + err + ')',
               content: '登陆失败,请检查您的网络设置，稍后重试'
             })
           }
@@ -60,15 +81,25 @@ Page({
         })
       }
     })
+    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  getWxOpenid (login, cb) {
+    wx.request({
+      url: 'https://litin.gpsoo.net/1/auth/access_token',
+      data: {
+        method: 'getWxOpenid',
+        wxcode: login.code,
+        access_token: app.globalData.accessToken
+      },
+      success: function (res) {
+        if (res.data.errcode == 0) {
+          console.log('aaaaa');
+          app.globalData.openId = res.data.data.openid;
+          cb(login)
+        }
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

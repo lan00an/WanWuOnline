@@ -1,0 +1,7 @@
+<view class="editName">
+    <view class="title">设置/更改{{title}}</view>
+    <view class="input">
+        <input type="text" placeholder="请输入设备名称" bindinput='getInput' value="{{content}}" focus="true" />
+    </view>
+    <button class="submit" bindtap="modifyItem" style="{{clickable ? bgcSet : bgcSetDisable}}">确 认</button>
+</view>

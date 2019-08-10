@@ -68,10 +68,7 @@ Page({
             let m = date.getMinutes() + ':';
             let s = date.getSeconds();
             console.log(Y + M + D + h + m + s); 
-            arr[i].send_time = Y + M + D + h + m + s
-            console.log(arr[i].send_time)
-            // console.log(time)
-            // res.data.data[i].send_time=time
+            arr[i].send_time = Y + M + D + h + m + s;
           }
           that.setData({
             contactList: arr

@@ -21,7 +21,13 @@
   font-size: 15px;
   float: right;
   color: #999999;
-  margin-right: 15px;
+  margin-right: 5px;
+}
+.detail .item text.recharge {
+  color: #2575AC;
+  font-size: 15px;
+  float: right;
+  margin-right: 5px;
 }
 .detail .item .copy {
   float: right;

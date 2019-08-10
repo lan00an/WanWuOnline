@@ -13,6 +13,7 @@ App({
     account: '',
     accessToken: '',
     imei: '',
+    openId: '',
     appTheme: {}
   }
 })

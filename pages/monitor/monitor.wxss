@@ -15,77 +15,91 @@ map {
   clear: both;
 }
 .bindDevice {
+  text-align: center;
   position: fixed;
-  color: #fff;
+  color: #000;
   right: 20rpx;
   top: 30rpx;
-  padding: 5px 12px 4px;
   border-radius: 5px;
-  height: 26px;
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 7px 4px;
+  font-size: 0px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
 }
 .bindDevice .bindImage {
-  float: left;
-  width: 13px;
-  margin-right: 5px;
-  line-height: 26px;
-  height: 14px;
-  margin-top: 6px;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
 }
 .bindDevice .bindText {
-  font-size: 12px;
-  line-height: 26px;
+  margin-top: 2px;
+  font-size: 9px;
+}
+.btnContainer {
+  position: fixed;
+  top: 15px;
+  left: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0;
+}
+.btnContainer .alarm .bindImage {
+  width: 45px;
+  height: 45px;
+}
+.btnContainer .line {
+  width: 100%;
+  height: 1rpx;
+  background-color: #eee;
+}
+.btnContainer .deviceList {
+  height: 44px;
+  width: 44px;
+  padding: 8px 11px 7px;
+  box-sizing: border-box;
+  background-color: #fff;
+  text-align: center;
+}
+.btnContainer .deviceList.click {
+  background-color: #f6f5f9;
+}
+.btnContainer .deviceList cover-image {
+  width: 22px;
+  height: 29px;
 }
 .shareLocation {
   position: fixed;
-  background-color: #fff;
   bottom: 190px;
   height: 30px;
   width: 80px;
   text-align: center;
-  left: 20rpx;
-  box-sizing: border-box;
-  font-size: 12px;
-  line-height: 30px;
-  border-radius: 6px;
-  color: #2575AC;
-}
-.selection {
-  position: fixed;
-  background-color: #fff;
-  bottom: 190px;
   right: 20rpx;
-  display: flex;
-  width: 141px;
-  height: 30px;
-  justify-content: space-between;
   box-sizing: border-box;
   font-size: 12px;
-  border-radius: 6px;
-}
-.selection .line {
-  vertical-align: top;
-  background-color: #000;
-  width: 1rpx;
-  height: 12px;
-  margin-top: 9px;
-}
-.selection .previous,
-.selection .next {
-  text-align: center;
   line-height: 30px;
-  overflow: visible;
-  font-size: 12px;
-  color: #2575AC;
-  width: 70px;
-  box-sizing: border-box;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
-.alarm {
-  position: fixed;
-  left: 20rpx;
-  top: 40rpx;
-  background-color: #fff;
-  width: 60rpx;
-  height: 60rpx;
+.shareLocation button {
+  color: #2575AC;
+  line-height: 30px;
+  font-size: 12px;
+}
+.lastLocation {
+  margin-top: 6px;
+  padding: 0 20px;
+  font-size: 13px;
+}
+.lastLocation cover-view {
+  display: inline-block;
+  font-size: 13px;
+}
+.lastLocation cover-view.line {
+  margin-left: 10rpx;
+  margin-right: 10rpx;
 }
 .switchBtn {
   position: fixed;
@@ -175,7 +189,8 @@ map {
   font-size: 15px;
 }
 .markerInfo .operation .left .line,
-.markerInfo .operation .left .playback {
+.markerInfo .operation .left .playback,
+.markerInfo .operation .left .navigation {
   margin-left: 15px;
   line-height: 31px;
   font-size: 15px;
@@ -184,7 +199,8 @@ map {
   color: #DFDFDF;
 }
 .markerInfo .operation .left .detail,
-.markerInfo .operation .left .playback {
+.markerInfo .operation .left .playback,
+.markerInfo .operation .left .navigation {
   color: #2575AC;
   line-height: 31px;
   font-size: 15px;

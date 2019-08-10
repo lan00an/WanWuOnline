@@ -14,7 +14,14 @@ Page({
     enableTime: '',
     type: '',
     heart_time: '',
-    goome_card: ''
+    goome_card: '',
+    mobile: '',
+    palte: '',
+    owner: '',
+    idNum: '',
+    wlcard_out_time: '',
+    beginpos: 0,
+    wlcard_out_time: ''
   },
 
   /**
@@ -119,7 +126,6 @@ Page({
       success: function (res) {
         if (res.data.errcode === 0) {
           let data = res.data.data
-          console.log(data)
           that.setData({
             name: data.name.trim(),
             imei: data.imei,
@@ -128,7 +134,12 @@ Page({
             outTime: that.getDate(data.out_time),
             type: data.dev_type,
             iotCard: data.phone,
-            goome_card: data.goome_card
+            goome_card: data.goome_card,
+            mobile: data.tel,
+            plate: data.number,
+            owner: data.owner,
+            idNum: data.owner_idno == 'NULL' ? '' : data.owner_idno,
+            wlcard_out_time: data.is_iot_card ? that.getDate(data.wlcard_out_time) : ''
           })
         } else {
           console.log(res.data)
@@ -154,6 +165,13 @@ Page({
       url: './editRemark/editRemark?remark=' + this.data.remark + '&imei=' + this.data.imei
     })
   },
+  editDetail(e) {
+    let title = e.currentTarget.dataset.prop
+    let val = e.currentTarget.dataset.value
+    wx.navigateTo({
+      url: './editDetail/editDetail?title=' + title + '&imei=' + this.data.imei + '&val=' + val
+    })
+  },
   copyText(e){
     console.log(e)
     wx.setClipboardData({　　　　　　
@@ -168,5 +186,160 @@ Page({
           })　　　　
         }
       })
+  },
+  platformCharge() {
+      const that = this
+      const url = 'https://litin.gpsoo.net/1/carol-pay'
+      let params = {
+        method: 'renewDevList',
+        beginpos: this.data.beginpos,
+        pagesize: 20,
+        access_token: app.globalData.accessToken,
+        access_type: 'inner'
+      }
+      wx.request({
+        url: url,
+        data: params,
+        success: function (res) {
+          if (res.data.errcode === 0) {
+            let list = res.data.data;
+            let chargeObj = {}
+            for (var i = 0; i < list.length; i++) {
+              if (list[i].imei == app.globalData.imei) {
+                chargeObj = list[i]
+                break
+              }
+            }
+            if (JSON.stringify(chargeObj) == "{}") {
+              that.setData({
+                beginpos: that.data.beginpos += 20
+              })
+              that.platformCharge()
+              return
+            }
+            that.setData({
+              beginpos : 0
+            })
+            var expire = '';
+            var confirmText = '确定';
+            if (chargeObj.expire_time == '2100-01-01 00:00:00') {
+              expire = '终生';
+            } else {
+              expire = chargeObj.expire_time.split(' ')[0] + '到期    ' + (chargeObj.fee[0].amount / 100) + '元/年';
+              confirmText = '续费';
+            }
+            wx.showModal({
+              title: chargeObj.user_name,
+              content: expire,
+              confirmText: confirmText,
+              success: function (res) {
+                if (res.confirm) {
+                  if (chargeObj.expire_time != '2100-01-01 00:00:00') {
+                    that.initPayment(chargeObj)
+                  }
+                } else if (res.cancel) {
+
+                }
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '获取充值信息失败',
+              icon: 'none'
+            })
+          }
+        }
+      })
+  },
+  wlcardRecharge () {
+    const that = this;
+    wx.showModal({
+      title: this.data.name,
+      content: "物联卡到期时间：" + this.data.wlcard_out_time,
+      confirmText: "续费",
+      success: function (res) {
+        if (res.confirm) {
+            that.initWlcardPayment()
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  },
+  initWlcardPayment () {
+    const that = this;
+    const url = "https://litin.gmiot.net/carol-pay";
+    wx.request({
+      url,
+      data: {
+        method: 'renewWlcard',
+        eid: app.globalData.accessToken.substr(5, 7),
+        msisdns: that.data.iotCard,
+        access_token: app.globalData.accessToken,
+        pay_type: "mp",
+        open_id: app.globalData.openId
+      },
+      success: function (res) {
+        if (res.data.errcode == 0) {
+          let data = res.data.data;
+          that.checkPayment(data);
+        } else {
+          wx.showToast({
+              title: '获取充值信息失败',
+              icon: 'none'
+          })
+        }
+      }
+    })
+  },
+  initPayment(obj) {
+    const that = this
+    const url = 'https://litin.gpsoo.net/1/carol-pay'
+    let data = {
+      method: 'renewOrder',
+      imei: obj.imei,
+      fee_type: 6, // 6 代表万物在线小程序
+      amount: obj.fee[0].amount,
+      pay_plat: 1,
+      pay_manner: 2,
+      access_token: app.globalData.accessToken,
+      uid: obj.uid,
+      access_type: 'inner',
+      open_id: app.globalData.openId
     }
+    wx.request({
+      url: url,
+      data: data,
+      success: function (res) {
+        if (res.data.errcode == 0) {
+          that.checkPayment(res.data.data)
+        } else {
+          wx.showToast({
+            title: '获取充值信息失败',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+  checkPayment(obj) {
+    const that = this
+    wx.requestPayment({
+      timeStamp: obj.wx_pay.timestamp,
+      nonceStr: obj.wx_pay.noncestr,
+      package: obj.wx_pay.package,
+      signType: 'MD5',
+      paySign: obj.wx_pay.paysign,
+      appId: obj.wx_pay.appid,
+      success(res) {
+        console.log('成功')
+        console.log(res)
+        that.getDetail(that.data.imei);
+      },
+      fail(res) {
+        console.log('失败')
+        console.log(res)
+      }
+    })
+  }
 })
